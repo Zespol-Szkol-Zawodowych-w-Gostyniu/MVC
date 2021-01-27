@@ -7,6 +7,11 @@ class homeModel{
         return $s;
     }
 
+    public function contactData(){
+        $s="Prześlij nam wiadomość";
+        return $s;
+    }
+
 
 }
 ?>
