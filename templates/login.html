@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOME</title>
+</head>
+
+<body>
+
+    <ul>
+        <li><a href="<?=$address?>home">HOME</a></li>
+        <li><a href="<?=$address?>contact">CONTACT</a></li>
+        <li><a href="<?=$address?>article">ARTICLE</a></li>
+        <li><a href="<?=$address?>info">INFO</a></li>
+    </ul>
+    <p><?php if ($this->get("islogin")): ?>
+        <p><?=$this->get('title');?></p>
+        <p><a href="<?=$address?>logout">logout</a></p>
+        <?php else: ?>
+        <form action="/login" method="POST">
+            <h3>Please sign in</h3>
+            <label for="inputEmail" class="visually-hidden">Email address</label>
+            <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email address" required
+                autofocus />
+            <label for="inputPassword" class="visually-hidden">Password</label>
+            <input name="pwd" type="password" id="inputPassword" class="form-control" placeholder="Password" required />
+
+            <p class="erorr"><?= $this->get("error") ?></p>
+            <button class="w-100 btn btn-lg btn-primary" type="submit" name="submit">
+                Sign in
+            </button>
+        </form> <?php endif; ?>
+    </p>
+
+</body>
+
+</html>

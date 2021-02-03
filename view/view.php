@@ -1,7 +1,18 @@
 <?php
 class View{
-    public function render($name, $path='templates/') {
+
+    public function isLogged($auth){
+        session_start();
+        if (isset($_SESSION['login'])) {
+            $auth->setLogin($_SESSION['login']);
+            $auth->setPassword($_SESSION['pwd']);
+            return true;
+        }else return false;
+    }
+    
+    public function render($name, $path='templates/',  $param='') {
         $path=$path.$name.'.html';
+        global $address;
         try {
             if(is_file($path)) {
                 require $path;
@@ -18,7 +29,7 @@ class View{
         }
     }
 
-    public function loadModel($name, $path='model/') {
+    public function loadModel($name, $path='model/',  $param='') {
         $name=$name.'Model';
         $path=$path.$name.'.php';
         try {
@@ -59,6 +70,10 @@ class View{
      */
     public function get($name) {
         return $this->$name;
+    }
+
+    public function redirect($url) {
+        header("location: ".$url);
     }
 
 }

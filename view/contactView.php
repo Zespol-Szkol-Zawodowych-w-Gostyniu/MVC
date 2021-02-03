@@ -2,7 +2,7 @@
 
 class contactView extends View{
 
-    public function __construct()
+    public function __construct( $param='')
     {
         
         $art=$this->loadModel('home');

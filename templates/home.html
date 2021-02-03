@@ -10,9 +10,10 @@
 <body>
     <h1><?=$this->get('title');?></h1>
     <ul>
-        <li><a href="home">HOME</a></li>
-        <li><a href="contact">CONTACT</a></li>
-        <li><a href="article">ARTICLE</a></li>
+        <li><a href="<?=$address?>home">HOME</a></li>
+        <li><a href="<?=$address?>contact">CONTACT</a></li>
+        <li><a href="<?=$address?>article">ARTICLE</a></li>
+        <li><a href="<?=$address?>info">INFO</a></li>
     </ul>
     <p><?= $this->get('artData'); ?></p>
 
