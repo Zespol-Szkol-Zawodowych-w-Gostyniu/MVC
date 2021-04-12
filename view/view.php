@@ -3,10 +3,20 @@ class View{
 
     public function isLogged($auth){
         session_start();
-        if (isset($_SESSION['login'])) {
-            $auth->setLogin($_SESSION['login']);
-            $auth->setPassword($_SESSION['pwd']);
-            return true;
+        if (isset($_SESSION['token'])) {
+            $date = new DateTime(date("Y-m-d H:i:s"));
+            $datetoken = new DateTime(date($auth->getDateToken($_SESSION['idu']))); 
+            //$interval= $date->diff($datetoken);
+            $interval=abs($date->getTimestamp() - $datetoken->getTimestamp())/60;
+            print($interval);
+            if (($auth->getToken($_SESSION['idu'])==$_SESSION['token']) && ($interval<5)){
+                $auth->setLogin($_SESSION['login']);
+                $auth->updateToken($_SESSION['idu']);
+                return true;
+            }else{
+                $auth->deleteToken($_SESSION['idu']);
+                return false;
+            }
         }else return false;
     }
     
